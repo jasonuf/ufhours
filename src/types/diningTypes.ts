@@ -6,15 +6,10 @@ export const DiningLocationSchema = z.object({
     is_building: z.boolean(),
     pay_with_meal_swipe: z.boolean(),
     pay_with_retail_swipe: z.boolean(),
-    week: z.array(DaySchema)
+    week: z.array(DaySchema).nonempty()
 });
-
-export const DiningResponseSchema = z.object({
-    theLocations: z.array(DiningLocationSchema)
-});
-
 
 export type DiningLocation = z.infer<typeof DiningLocationSchema>;
-export type DiningResponse = z.infer<typeof DiningResponseSchema>;
+
 
 
