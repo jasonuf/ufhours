@@ -1,7 +1,20 @@
 import express from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT ?? "9001";
+
+import { getDiningHours } from './services/diningService.js';
+getDiningHours('2023-10-01').then(result => {
+  if (result.ok) {
+    console.log('Dining Hours:', result.data);
+  } else {
+    console.error('Error fetching dining hours:', result.error);
+  }
+});
+
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
