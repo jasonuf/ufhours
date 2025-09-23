@@ -1,7 +1,7 @@
 import * as z from 'zod';
 import { DiningLocationSchema } from '../types/diningTypes.js';
 import type { DiningLocation } from '../types/diningTypes.js';
-import type { Result } from '../types/dailyTypes.js'
+import type { Result, FailedLocation } from '../types/generalTypes.js'
 
 
 // Parser can return upstream or validation errors
@@ -16,13 +16,22 @@ export function parseDiningResponse(data: unknown): Result<DiningLocation> {
         };
     }
 
-    const locations: (DiningLocation | null)[] = [];
+    const locations: (DiningLocation | FailedLocation)[] = [];
     for (const loc of data['theLocations']) {
         const result = DiningLocationSchema.safeParse(loc);
         if (result.success) {
             locations.push(result.data);
         } else {
-            locations.push(null);
+            const processedLoc: FailedLocation = {};
+            if (typeof loc === 'object' && loc !== null) {
+                if ('id' in loc && typeof loc['id'] === 'string') {
+                    processedLoc.id = loc['id'];
+                }
+                if ('name' in loc && typeof loc['name'] === 'string') {
+                    processedLoc.name = loc['name'];
+                }
+            }
+            locations.push(processedLoc);
         }
     }
 

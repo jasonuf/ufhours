@@ -20,6 +20,8 @@
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^24.5.2",
+    "@types/pg": "^8.15.5",
+    "drizzle-kit": "^0.31.4",
     "eslint": "^9.35.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
@@ -30,7 +32,9 @@
   "dependencies": {
     "cron": "^4.3.3",
     "dotenv": "^17.2.2",
+    "drizzle-orm": "^0.44.5",
     "express": "^5.1.0",
+    "pg": "^8.16.3",
     "zod": "^4.1.11"
   }
 }
