@@ -1,2 +1,1 @@
-import { CronJob } from 'cron';
-
+import { CronJob } from "cron";

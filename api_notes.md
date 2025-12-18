@@ -1,11 +1,11 @@
 ### Dining Hall Hours
 
-Each location object that is a building/section should have is_building = True.  
+Each location object that is a building/section should have is_building = True.
 
 Overall structure:
 
 location: {
-    details,
+details,
 
     week: [
         day: {
@@ -20,20 +20,17 @@ location: {
 
 }
 
-
 ### Notification strategy
 
 Option for day of or n-days before.
 
 Option to configure only when saved location is closed. Or when hours are different than previous weeks.
 
-
 ### Possible Concerns:
 
 //runtimeValidation
 DateSchema allows impossible dates
 HoursSchema allows impossible hours/minutes
-
 
 # Current Dining Error Handling:
 
