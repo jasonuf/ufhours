@@ -20,16 +20,16 @@ RUN npm run build
 FROM node:20-bookworm-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
-
 WORKDIR /app
 
-# Install Playwright browsers and system deps (Debian)
-# This will apt-get the OS deps and download browsers.
-RUN npx playwright install --with-deps chromium
-
+# 1) Install node deps first (so npx uses YOUR Playwright version)
 COPY package*.json ./
 RUN npm ci --omit=dev
 
+# 2) Now install browsers + OS deps for the SAME Playwright version
+RUN npx playwright install --with-deps chromium
+
+# App build output
 COPY --from=builder /app/dist ./dist
 
 ENV PORT=9000
