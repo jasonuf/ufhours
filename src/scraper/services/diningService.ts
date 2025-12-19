@@ -1,7 +1,7 @@
 import * as z from "zod";
-import { DiningLocationSchema } from "../types/diningTypes.js";
-import type { DiningLocation } from "../types/diningTypes.js";
-import type { Result, FailedLocation } from "../types/generalTypes.js";
+import { DiningLocationSchema } from "../../types/diningTypes.js";
+import type { DiningLocation } from "../../types/diningTypes.js";
+import type { Result, FailedLocation } from "../../types/generalTypes.js";
 import { chromium } from "playwright";
 import type { Browser, BrowserContext } from "playwright";
 

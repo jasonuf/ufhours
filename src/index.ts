@@ -8,7 +8,7 @@ const db = drizzle(process.env.DATABASE_URL!);
 const app = express();
 const port = process.env.PORT ?? "9001";
 
-import { getDiningHours } from "./services/diningService.js";
+import { getDiningHours } from "./scraper/services/diningService.js";
 getDiningHours("2023-10-01").then((result) => {
   if (result.ok) {
     console.log("Dining Hours:", result.data);
