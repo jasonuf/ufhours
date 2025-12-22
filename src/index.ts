@@ -4,14 +4,15 @@ import { drizzle } from "drizzle-orm/node-postgres";
 
 dotenv.config();
 
-const db = drizzle(process.env.DATABASE_URL!);
+export const db = drizzle(process.env.DATABASE_URL!);
 const app = express();
 const port = process.env.PORT ?? "9001";
 
-import { getDiningHours } from "./scraper/services/diningService.js";
+import { getDiningHours, addDiningHoursDB } from "./scraper/services/diningService.js";
 getDiningHours("2023-10-01").then((result) => {
   if (result.ok) {
     console.log("Dining Hours:", result.data);
+    addDiningHoursDB(result);
   } else {
     console.error("Error fetching dining hours:", result.error);
   }
